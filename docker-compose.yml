@@ -34,5 +34,16 @@ services:
       db:
         condition: service_healthy
 
+  frontend:
+    build: ./frontend
+    container_name: gimnasio-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+
 volumes:
   mysql_data:
